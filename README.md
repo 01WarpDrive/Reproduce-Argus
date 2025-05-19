@@ -1,3 +1,44 @@
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+torch 2.5.1 requires sympy==1.13.1, but you have sympy 1.14.0 which is incompatible.
+
+
+# Reproduce-Argus
+
+## Environment
+
+My environment: Windows11 + RTX3060 + CUDA12.1
+
+new commands for Python Environment config:
+
+```bash
+conda create -n argus python==3.9
+conda activate argus
+conda install pytorch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 pytorch-cuda=12.1 -c pytorch -c nvidia
+pip install pyg_lib torch_scatter torch_sparse torch_cluster torch_spline_conv -f https://data.pyg.org/whl/torch-2.5.0+cu121.html
+pip install -r requirements.txt
+```
+
+## Experiments
+
+### lanl
+
+```bash
+cd loaders
+python split_lanl.py
+cd ..
+python main.py --dataset LANL --delta 1 --lr 0.01 --loss bce
+```
+
+### optc
+
+```bash
+cd loaders
+python split_optc.py
+cd ..
+python main.py --dataset OPTC --delta 0.1 --lr 0.005 --patience 10 --loss bce
+```
+
+
 # Argus
 This is the repo for the paper "Understanding and Bridging the Gap Between Unsupervised Network Representation Learning and Security Analytics" which is accepted in IEEE Security & Privacy 2024.
 There is a [blog](https://c0ldstudy.github.io/posts/GSA/) summarizing the main idea of the paper or you can check the [paper](https://www.computer.org/csdl/proceedings-article/sp/2024/313000a012/1RjE9Q5gQrm) directly.

@@ -1,6 +1,5 @@
 from argparse import ArgumentParser
 import os, datetime
-import pandas as pd
 import torch
 import loaders.load_optc as optc
 import loaders.load_lanl as lanl

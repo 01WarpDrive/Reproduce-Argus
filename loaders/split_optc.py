@@ -4,9 +4,9 @@ from tqdm import tqdm
 
 # Set dataset paths
 # =============
-RED = '' # Location of redteam.txt
-SRC = '' # Location of auth.txt
-DST = '' # Directory to save output files to
+RED = 'D:/GitHub/Reproduce-Argus/datasets/optc/redteam_optc.txt' # Location of redteam.txt
+SRC = 'D:/GitHub/Reproduce-Argus/datasets/optc/auth_optc.txt' # Location of auth.txt
+DST = 'D:/GitHub/Reproduce-Argus/datasets/optc/output/' # Directory to save output files to
 # =============
 
 assert RED and SRC and DST, 'Please download the LANL data set, and mark in the code where it is'

@@ -3,10 +3,10 @@ import pickle
 from tqdm import tqdm
 # Set dataset paths
 # =============
-RED = '' # Location of redteam.txt
-SRC = '' # Location of auth.txt
-DST = '' # Directory to save output files to
-SRC_DIR = '' # Directory of flows.txt, auth.txt
+SRC_DIR = 'F:/datasets/LANL/unzip/' # Directory of flows.txt, auth.txt
+RED = f'{SRC_DIR}redteam.txt' # Location of redteam.txt
+SRC = f'{SRC_DIR}auth.txt' # Location of auth.txt
+DST = 'D:/GitHub/Reproduce-Argus/datasets/lanl/' # Directory to save output files to
 # =============
 
 
@@ -267,6 +267,7 @@ def split_flows():
 
     save_map(port_map, 'pomap.pkl')
     save_map(proto_map, 'prmap.pkl')
+
 
 if __name__ == '__main__':
     split_auth()

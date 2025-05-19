@@ -4,7 +4,7 @@ import pickle
 import time
 import pandas as pd
 import numpy as np
-from sklearn.metrics import roc_auc_score as auc_score, f1_score, average_precision_score as ap_score, precision_recall_curve, confusion_matrix
+from sklearn.metrics import roc_auc_score as auc_score, f1_score, average_precision_score as ap_score, confusion_matrix, precision_score, recall_score
 from libauc.optimizers import SOAP
 import torch
 from torch.optim import Adam, Adadelta
@@ -227,20 +227,26 @@ def score_stats(args, scores, labels, weights, cutoff, ctime):
 
     cm = confusion_matrix(labels, classified, labels=[0,1])
     tn, fp, fn, tp = cm.ravel()
-    print("tn, fp, fn, tp: ", tn, fp, fn, tp)
     scores = 1-scores
 
 
     # Get metrics
-    auc = auc_score(labels, scores)
     ap = ap_score(labels, scores)
+    auc = auc_score(labels, scores)
+    precision = tp / (tp + fp)
+    recall = tp / (tp + fn)
     f1 = f1_score(labels, classified)
 
     print("Learned Cutoff %0.4f" % cutoff)
-    print("TPR: %0.4f, FPR: %0.4f" % (tpr, fpr))
-    print("TP: %d  FP: %d" % (tp, fp))
+    print("tn, fp, fn, tp: ", tn, fp, fn, tp)
+    print(f'AP: {ap:.4f}')
+    print(f'AUC: {auc:.4f}')
+    print(f'Precision: {precision:.4f}')
+    print(f'Recall: {recall:.4f}')
+    # print("TPR: %0.4f, FPR: %0.4f" % (tpr, fpr))
+    # print("TP: %d  FP: %d" % (tp, fp))
     print("F1: %0.8f" % f1)
-    print("AUC: %0.4f  AP: %0.4f\n" % (auc,ap))
+    print(f'FPR: {fpr:.4f}')
     print("FwdTime", ctime, )
     title = "test"
     return {

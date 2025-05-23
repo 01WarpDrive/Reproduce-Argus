@@ -201,7 +201,7 @@ def load_partial_lanl(start=140000, end=156659, delta=8640, is_test=False, use_f
             return 4
 
     def add_edge(et, src_u, is_anom=0):
-        src_u_ind = parse_user(src_u)
+        src_u_ind = parse_user(src_u) # first char of 'src_u' to index
         if et in edges_t:
             val = edges_t[et]
             edges_t[et][0:2] = [max(is_anom, val[0]), val[1]+1]

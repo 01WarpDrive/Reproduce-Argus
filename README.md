@@ -38,6 +38,8 @@ cd ..
 python main.py --dataset OPTC --delta 0.1 --lr 0.005 --patience 10 --loss bce
 ```
 
+### Issues
+1. function `mark_anoms` in `split_lanl.py` contains `red_events = red_events[1:]`, which removes the first label in ground-truth.
 
 # Argus
 This is the repo for the paper "Understanding and Bridging the Gap Between Unsupervised Network Representation Learning and Security Analytics" which is accepted in IEEE Security & Privacy 2024.

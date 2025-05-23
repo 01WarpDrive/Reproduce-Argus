@@ -16,9 +16,14 @@ DELTA = 10000
 DAY = 60**2*24
 
 def mark_anoms():
+    """_summary_
+
+    Returns:
+        _type_: {(src_com, dst_com): [ts1, ts2]}
+    """
     with open(RED, 'r') as f:
         red_events = f.read().split()
-    red_events = red_events[1:]
+    red_events = red_events[1:] # TODO: why
     def add_ts(d, val, ts):
         val = (val[1], val[2])
         if val in d:
@@ -35,6 +40,11 @@ def mark_anoms():
 
 
 def mark_anoms_node():
+    """_summary_
+
+    Returns:
+        _type_: {src_com or dst_com: [ts1, ts2]}
+    """
     with open(RED, 'r') as f:
         red_events = f.read().split()
     red_events = red_events[1:]
@@ -117,7 +127,7 @@ def split_auth():
     line = f_in.readline() # Skip headers
     line = f_in.readline()
 
-    nmap = {}
+    nmap = {}  # node map {com: id}
     nid = [0]
     umap = {}
     uid = [0]
